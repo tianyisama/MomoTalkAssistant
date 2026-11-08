@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+.pytest_cache/
+_build/
+build/
+dist/
+data/
+_analysis/
+*.spec
+assets/adb/
+*.mp4

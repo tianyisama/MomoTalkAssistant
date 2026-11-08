@@ -1,0 +1,288 @@
+{
+  "home_phone": {
+    "file": "home_phone.png",
+    "threshold": 0.77,
+    "source": "01_home.png",
+    "source_crop": [
+      198,
+      188,
+      245,
+      238
+    ]
+  },
+  "home_notice": {
+    "file": "home_notice.png",
+    "threshold": 0.75,
+    "source": "01_home.png",
+    "source_crop": [
+      50,
+      176,
+      113,
+      235
+    ]
+  },
+  "momo_logo": {
+    "file": "momo_logo.png",
+    "threshold": 0.84,
+    "source": "03_people.png",
+    "source_crop": [
+      217,
+      157,
+      351,
+      200
+    ]
+  },
+  "momo_close": {
+    "file": "momo_close.png",
+    "threshold": 0.86,
+    "source": "frame_004.jpg",
+    "source_crop": [
+      1650,
+      150,
+      1709,
+      207
+    ]
+  },
+  "people_idle": {
+    "file": "people_idle.png",
+    "threshold": 0.75,
+    "source": "frame_004.jpg",
+    "source_crop": [
+      225,
+      258,
+      285,
+      315
+    ]
+  },
+  "people_active": {
+    "file": "people_active.png",
+    "threshold": 0.75,
+    "source": "frame_002.jpg",
+    "source_crop": [
+      225,
+      258,
+      285,
+      315
+    ]
+  },
+  "chat_active": {
+    "file": "chat_active.png",
+    "threshold": 0.75,
+    "source": "frame_004.jpg",
+    "source_crop": [
+      225,
+      405,
+      285,
+      441
+    ]
+  },
+  "chat_idle": {
+    "file": "chat_idle.png",
+    "threshold": 0.75,
+    "source": "frame_002.jpg",
+    "source_crop": [
+      225,
+      405,
+      285,
+      441
+    ]
+  },
+  "people_label": {
+    "file": "people_label.png",
+    "threshold": 0.83,
+    "source": "03_people.png",
+    "source_crop": [
+      346,
+      248,
+      417,
+      284
+    ]
+  },
+  "empty_chat": {
+    "file": "empty_chat.png",
+    "threshold": 0.83,
+    "source": "03_people.png",
+    "source_crop": [
+      1280,
+      561,
+      1455,
+      598
+    ]
+  },
+  "filter_latest": {
+    "file": "filter_latest.png",
+    "threshold": 0.84,
+    "source": "07_latest_chat.png",
+    "source_crop": [
+      737,
+      248,
+      796,
+      282
+    ]
+  },
+  "filter_unread": {
+    "file": "filter_unread.png",
+    "threshold": 0.84,
+    "source": "04_chat_ready.png",
+    "source_crop": [
+      737,
+      248,
+      796,
+      282
+    ]
+  },
+  "sort_title": {
+    "file": "sort_title.png",
+    "threshold": 0.84,
+    "source": "05_sort_ready.png",
+    "source_crop": [
+      353,
+      331,
+      420,
+      369
+    ]
+  },
+  "sort_unread_idle": {
+    "file": "sort_unread_idle.png",
+    "threshold": 0.83,
+    "source": "06_sort_latest.png",
+    "source_crop": [
+      802,
+      428,
+      868,
+      462
+    ]
+  },
+  "sort_unread_active": {
+    "file": "sort_unread_active.png",
+    "threshold": 0.83,
+    "source": "05_sort_ready.png",
+    "source_crop": [
+      802,
+      428,
+      868,
+      462
+    ]
+  },
+  "sort_ok": {
+    "file": "sort_ok.png",
+    "threshold": 0.84,
+    "source": "05_sort_ready.png",
+    "source_crop": [
+      638,
+      693,
+      708,
+      728
+    ]
+  },
+  "reply_label": {
+    "file": "reply_label.png",
+    "threshold": 0.84,
+    "source": "08_reply.png",
+    "source_crop": [
+      1189,
+      762,
+      1253,
+      795
+    ]
+  },
+  "bond_label": {
+    "file": "bond_label.png",
+    "threshold": 0.84,
+    "source": "09_bond.png",
+    "source_crop": [
+      1189,
+      796,
+      1314,
+      830
+    ]
+  },
+  "story_start": {
+    "file": "story_start.png",
+    "threshold": 0.84,
+    "source": "10_story_info.png",
+    "source_crop": [
+      1235,
+      819,
+      1523,
+      874
+    ]
+  },
+  "menu_light": {
+    "file": "menu_light.png",
+    "threshold": 0.84,
+    "source": "11_story_menu.png",
+    "source_crop": [
+      1761,
+      40,
+      1848,
+      82
+    ]
+  },
+  "menu_dark": {
+    "file": "menu_dark.png",
+    "threshold": 0.84,
+    "source": "12_expanded_menu.png",
+    "source_crop": [
+      1761,
+      40,
+      1848,
+      82
+    ]
+  },
+  "fast_forward": {
+    "file": "fast_forward.png",
+    "threshold": 0.82,
+    "source": "frame_027.jpg",
+    "source_crop": [
+      1785,
+      157,
+      1849,
+      200
+    ]
+  },
+  "skip_question": {
+    "file": "skip_question.png",
+    "threshold": 0.84,
+    "source": "13_skip_confirm.png",
+    "source_crop": [
+      812,
+      647,
+      1096,
+      684
+    ]
+  },
+  "skip_ok": {
+    "file": "skip_ok.png",
+    "threshold": 0.84,
+    "source": "13_skip_confirm.png",
+    "source_crop": [
+      1101,
+      754,
+      1198,
+      808
+    ]
+  },
+  "reward_title": {
+    "file": "reward_title.png",
+    "threshold": 0.84,
+    "source": "14_reward.png",
+    "source_crop": [
+      740,
+      191,
+      1185,
+      294
+    ]
+  },
+  "reward_touch": {
+    "file": "reward_touch.png",
+    "threshold": 0.84,
+    "source": "14_reward.png",
+    "source_crop": [
+      879,
+      924,
+      1046,
+      972
+    ]
+  }
+}
