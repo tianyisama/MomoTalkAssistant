@@ -2,7 +2,7 @@
 
 基于adb实现对模拟器的读取和控制，允许后台自动刷桃信~~(后备能源，启动！)~~。支持国服/B服/日服/国际服(繁体中文)，支持任意模拟器
 
-[下载最新发行版](https://github.com/tianyisama/MomoTalkAssistant/releases/latest))
+[下载最新发行版](https://github.com/tianyisama/MomoTalkAssistant/releases/latest)
 
 ## 使用 EXE
 
