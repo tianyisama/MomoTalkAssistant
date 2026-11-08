@@ -2,7 +2,7 @@
 
 基于adb实现对模拟器的读取和控制，允许后台自动刷桃信~~(后备能源，启动！)~~。支持国服/B服/日服/国际服(繁体中文)，支持任意模拟器
 
-[GitHub 仓库](https://github.com/tianyisama/MomoTalkAssistant)
+[下载最新发行版](https://github.com/tianyisama/MomoTalkAssistant/releases/latest))
 
 ## 使用 EXE
 
@@ -16,7 +16,7 @@
 ## 兼容范围
 
 - 理论支持任意模拟器，已确认可在MuMu/雷电模拟器上运行。
-- 支持国服/日服/国际服(繁体中文)。理论支持B服(没账号测试不了)。国际服请将游戏语言设置为繁体中文。
+- 支持国服/日服/国际服(繁体中文)。理论支持B服(没账号测试不了)。
 
 
 ## 区服与画面识别
@@ -29,8 +29,6 @@
 | `com.RoamingStar.BlueArchive` | 国服 | 简体中文 |
 | `com.RoamingStar.BlueArchive.bilibili` | Bilibili 服 | 简体中文 |
 | `com.nexon.bluearchive` | 国际服 | 繁体中文 |
-
-主页桃信入口使用所有区服共用的候选图标库，目前包含两种样式，新增样式不需要修改区服映射；文字按钮仍按日文、简体中文、繁体中文分别识别。
 
 
 ## 从源码运行
