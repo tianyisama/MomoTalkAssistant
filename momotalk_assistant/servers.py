@@ -14,6 +14,7 @@ SERVERS = {
     # Package name read from the user's installed application. Full gameplay
     # cannot be tested without an account; it shares the simplified-Chinese UI.
     "com.RoamingStar.BlueArchive.bilibili": Server("蔚蓝档案（Bilibili服）","cn",False),
+    "com.nexon.bluearchive": Server("蔚蓝档案（国际服·繁中）","tw"),
 }
 
 

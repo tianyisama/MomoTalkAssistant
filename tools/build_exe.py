@@ -39,6 +39,8 @@ def main():
              "--distpath",str(output),"--workpath",str(build/"pyinstaller"),
              "--specpath",str(build),"--add-data",f"{ROOT/'assets/templates'}:assets/templates",
              "--add-data",f"{ROOT/'assets/templates_cn'}:assets/templates_cn",
+             "--add-data",f"{ROOT/'assets/templates_tw'}:assets/templates_tw",
+             "--add-data",f"{ROOT/'assets/home_icons'}:assets/home_icons",
              "--add-data",f"{ROOT/'assets/app.ico'}:assets", "--add-data",f"{ROOT/'assets/app.png'}:assets"]
     command += ["--add-data",f"{ROOT/'assets/github-mark.png'}:assets"]
     for name in ["adb.exe","AdbWinApi.dll","AdbWinUsbApi.dll"]:

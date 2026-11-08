@@ -1,0 +1,10 @@
+{
+  "handset_3d": {
+    "file": "handset_3d.png",
+    "threshold": 0.83
+  },
+  "handset_flat": {
+    "file": "handset_flat.png",
+    "threshold": 0.83
+  }
+}

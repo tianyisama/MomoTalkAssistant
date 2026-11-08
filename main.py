@@ -8,7 +8,7 @@ import sys
 
 
 def main():
-    parser=argparse.ArgumentParser(description="桃信助手：通过 ADB 后台处理日服未读桃信")
+    parser=argparse.ArgumentParser(description="桃信助手：通过 ADB 后台处理日服、国服和国际服繁中未读桃信")
     parser.add_argument("--smoke-test",metavar="REPORT",help="检查随附资源并写入 JSON 后退出")
     parser.add_argument("--probe",metavar="IMAGE",help="仅识别一张本地截图")
     parser.add_argument("--video",metavar="VIDEO",help="分析本地录屏，不发送触控")
@@ -24,6 +24,8 @@ def main():
         from momotalk_assistant import __version__
         bank=TemplateBank()
         cn_bank=TemplateBank(resource_dir()/"assets/templates_cn")
+        tw_bank=TemplateBank(resource_dir()/"assets/templates_tw")
+        home_icons=TemplateBank(resource_dir()/"assets/home_icons")
         root=tkinter.Tk()
         root.withdraw()
         root.update_idletasks()
@@ -31,7 +33,8 @@ def main():
         root.destroy()
         report={"version":__version__,"templates":len(bank.templates),"opencv":cv2.__version__,
                 "tk":patchlevel,"adb":resolve_adb(),"frozen":bool(getattr(sys,"frozen",False))}
-        report["template_profiles"]={"jp":len(bank.templates),"cn":len(cn_bank.templates)}
+        report["template_profiles"]={"jp":len(bank.templates),"cn":len(cn_bank.templates),"tw":len(tw_bank.templates)}
+        report["home_icon_variants"]=len(home_icons.templates)
         path=Path(args.smoke_test); path.parent.mkdir(parents=True,exist_ok=True)
         path.write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding="utf-8")
         return

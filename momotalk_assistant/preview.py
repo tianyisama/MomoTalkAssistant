@@ -92,9 +92,10 @@ class PreviewService:
             obs=self._detectors[profile].observe(frame)
             rendered,scene=annotate(frame,obs),str(obs.scene)
             message=f"已选择{server.name}，可以开始处理未读"
-            if not server.tested: message+="（使用国服模板，完整流程未实测）"
+            if not server.tested:
+                message+="（使用国服模板，完整流程未实测）" if profile=="cn" else "（完整流程尚未实测）"
         else:
             rendered,scene=frame.image,target.label.split("  ·  ")[0]
-            message="已显示所选画面；选择日服或国服后可开始自动处理"
+            message="已显示所选画面；选择支持的游戏后可开始自动处理"
         return {"image":rendered, "scene":scene,
                 "resolution":frame.original_size, "message":message,"targets":targets,"target":target}

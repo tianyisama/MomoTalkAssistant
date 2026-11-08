@@ -126,11 +126,12 @@ def components(mask: np.ndarray, offset: tuple[int, int] = (0, 0)) -> list[Box]:
 
 
 class Detector:
-    def __init__(self, templates: TemplateBank | None = None, *, profile: str = "jp"):
-        if profile not in ("jp","cn"): raise ValueError("Unknown template profile")
+    def __init__(self, templates: TemplateBank | None = None, *, profile: str = "jp", home_icons: TemplateBank | None = None):
+        if profile not in ("jp","cn","tw"): raise ValueError("Unknown template profile")
         self.profile=profile
-        directory=resource_dir()/("assets/templates_cn" if profile=="cn" else "assets/templates")
+        directory=resource_dir()/({"jp":"assets/templates","cn":"assets/templates_cn","tw":"assets/templates_tw"}[profile])
         self.bank = templates or TemplateBank(directory)
+        self.home_icons=home_icons or TemplateBank(resource_dir()/"assets/home_icons")
 
     def observe(self, frame: Frame) -> Observation:
         image = frame.image
@@ -186,7 +187,8 @@ class Detector:
         if phone:
             obs.scene = Scene.HOME
             obs.targets["open_momo"] = phone
-            scale = phone.box.w/self.bank.templates["home_phone"].shape[1]
+            scale = phone.box.w/self.home_icons.templates[phone.name].shape[1]
+            obs.meta["home_icon_variant"]=phone.name
             badge_area = Box(round(phone.box.x+.2*phone.box.w),
                              round(phone.box.y-.85*phone.box.h),
                              round(phone.box.w*1.5),round(phone.box.h))
@@ -196,26 +198,30 @@ class Detector:
 
     def _home_phone(self,image,gray,whole):
         scales=(.6,.7,.8,.9,.95,1.,1.05,1.1,1.2,1.35,1.5)
-        phone=self.bank.find("home_phone",gray,whole,scales=scales,threshold=.83)
-        if not phone: return None
-        template=self.bank.color_templates["home_phone"]
+        candidates=[self.home_icons.find(name,gray,whole,scales=scales) for name in self.home_icons.templates]
+        candidates=[candidate for candidate in candidates if candidate and self._valid_home_icon(image,candidate)]
+        if not candidates: return None
+        phone=max(candidates,key=lambda candidate:candidate.confidence)
+        suppressed=gray.copy()
+        erase=phone.box.expanded(round(phone.box.w*.25),round(phone.box.h*.25))
+        x0,y0=max(0,erase.x),max(0,erase.y)
+        suppressed[y0:min(gray.shape[0],erase.bottom),x0:min(gray.shape[1],erase.right)]=int(np.median(gray))
+        for name in self.home_icons.templates:
+            second=self.home_icons.find(name,suppressed,whole,scales=scales)
+            if second and second.confidence>=phone.confidence-.04 and self._valid_home_icon(image,second): return None
+        return phone
+
+    def _valid_home_icon(self,image,phone):
+        template=self.home_icons.color_templates[phone.name]
         target=phone.box.crop(image)
         resized=cv2.resize(template,(phone.box.w,phone.box.h))
         hsv=cv2.cvtColor(resized,cv2.COLOR_BGR2HSV)
         # Check the handset's pink and white surfaces, not background pixels or
         # an unrelated home icon. This also rejects icons beneath a dim overlay.
         mask=((hsv[:,:,0]>160)&(hsv[:,:,1]>35)&(hsv[:,:,2]>120))|(np.min(resized,axis=2)>190)
-        if mask.sum()<20: return None
+        if mask.sum()<20: return False
         delta=np.abs(cv2.cvtColor(target,cv2.COLOR_BGR2LAB).astype(float)-cv2.cvtColor(resized,cv2.COLOR_BGR2LAB))
-        if np.median(delta[mask].mean(axis=1))>30: return None
-        # Two separate equally plausible icons are ambiguous; do not guess.
-        suppressed=gray.copy()
-        erase=phone.box.expanded(round(phone.box.w*.25),round(phone.box.h*.25))
-        x0,y0=max(0,erase.x),max(0,erase.y)
-        suppressed[y0:min(gray.shape[0],erase.bottom),x0:min(gray.shape[1],erase.right)]=int(np.median(gray))
-        second=self.bank.find("home_phone",suppressed,whole,scales=scales,threshold=.83)
-        if second and second.confidence>=phone.confidence-.04: return None
-        return phone
+        return bool(np.median(delta[mask].mean(axis=1))<=30)
 
     def _momo(self, image, gray, obs, header, scale):
         win = obs.window
@@ -323,7 +329,7 @@ class Detector:
 class AutoDetector:
     """Offline screenshots have no package name; compare language landmarks."""
     def __init__(self):
-        self.detectors={profile:Detector(profile=profile) for profile in ("jp","cn")}
+        self.detectors={profile:Detector(profile=profile) for profile in ("jp","cn","tw")}
 
     def observe(self,frame: Frame) -> Observation:
         observations=[(profile,detector.observe(frame)) for profile,detector in self.detectors.items()]

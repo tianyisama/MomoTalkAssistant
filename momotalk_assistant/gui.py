@@ -130,7 +130,7 @@ class Application:
         header.pack(fill="x")
         title=tk.Frame(header,bg=COLORS["surface"]); title.pack(side="left")
         tk.Label(title,text="桃信助手",font=("Microsoft YaHei UI",20,"bold"),bg=COLORS["surface"],fg=COLORS["text"]).pack(anchor="w")
-        tk.Label(header,text=f"日服 / 国服模板  ·  v{__version__}",bg=COLORS["soft"],fg=COLORS["accent"],padx=12,pady=8).pack(side="right")
+        tk.Label(header,text=f"日服 / 国服 / 繁中  ·  v{__version__}",bg=COLORS["soft"],fg=COLORS["accent"],padx=12,pady=8).pack(side="right")
         tk.Frame(self.root,height=1,bg=COLORS["line"]).pack(fill="x")
         self.main_footer=tk.Frame(self.root,bg=COLORS["bg"])
         self.main_footer.pack(side="bottom",fill="x",padx=20,pady=(0,8))
@@ -456,7 +456,7 @@ class Application:
         target=self.selected_display()
         if not serial or target is None or not self.preview_ready: return
         if not self.preview_only.get() and not can_automate(target.package):
-            self.status.set("请选择日服或国服游戏画面，或勾选仅预览。")
+            self.status.set("请选择支持的游戏画面，或勾选仅预览。")
             return
         self._invalidate_preview()
         self._save_settings()

@@ -66,7 +66,7 @@ def test_selection_preview_does_not_require_a_running_game_or_send_touches(monke
     assert calls==[("custom-adb","emulator-5554"),("bind",0,"com.android.launcher3"),("capture",0)]
     assert result["resolution"]==(1280,720)
     assert result["target"].package=="com.android.launcher3"
-    assert "选择日服" in result["message"]
+    assert "选择支持的游戏" in result["message"]
     service.close()
 
 
